@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☗将棋同好会</title>
+
+    <!-- Google Fonts から明朝体（Noto Serif JP）を読み込むリンク -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="main-header">
+    <img src="shogi.jpg" alt="将棋同好会ロゴ" class="logo-img">
+    
+    <div class="narajo-container"> 
+        <a href="https://nwuss.nara-wu.ac.jp/"> 
+            <img src="images.jpeg" alt="narajo" class="narajo">
+        </a>
+        <span class="narajo-text">本校公式サイト</span> 
+    </div>
+
+    <!-- 💡ここを追加：言語切り替え用のボタン -->
+    <div class="lang-switcher">
+        <span class="lang-btn active">JP</span> / <span class="lang-btn">EN</span>
+    </div>
+</header> <!-- 元々ある閉じタグ -->
+
+    <!-- 右寄せの画像エリア -->
+    <div class="image-place">
+        <img src="mapwhere.png" alt="map">
+        <img src="IMG_0200-300x225.jpg" alt="wasitu picture">
+    </div>
+
+    <!-- 💡ここだけカッコいい筑紫オールド明朝になります -->
+    <h1>将棋同好会</h1>
+
+    <!-- 💡ここから下の文章は、見やすいゴシック体に修正しました -->
+    <h3>部長 木村太樹 / 副部長 菅野泰 / 会計 奥谷健吾</h3>
+
+    <h4>私たち将棋同好会は、部員24名で毎週木曜日と第2・第4水曜日に活動しています。普段は静かな和室でパチリと駒を響かせていますが、
+        今年の学園祭は一味違います！例年の学園祭では、お馴染みの和室で「フリー対局スペース」を出店していましたが、今年からは心機一転、
+        場所を【総合教育棟のゼミ2教室】へと移動します。「和室の将棋部はちょっと敷居が高いな……」と感じていたそこのあなた！
+        今回は教室というオープンな空間を活かし、将棋盤に触ったことがない完全初心者の方から、駒の動きなら任せろという方、
+        そして部員を唸らせるほど腕に覚えのある上級者まで、誰もが時間を忘れて夢中になれるような、これまでにない体験型イベントを企画しています。
+        部員一同、皆さんと盤上で（あるいは盤外で！）お会いできるのを楽しみに、全力で準備を進めています。ぜひお気軽にお立ち寄りください！
+    </h4>
+
+    <h4>
+        展示場所：総合教育棟 ゼミ2教室<br>
+        日程：9/19(土)・9/20(日)
+    </h4>
+
+<style>
+/* --- ヘッダー関連のCSS --- */
+.main-header {
+  padding: 8px 0;                  
+  border-bottom: 2px solid #dcd1be; 
+  margin-bottom: 25px;              
+  display: flex;
+  justify-content: space-between;   
+  align-items: center;              
+}
+
+.narajo-container {
+  display: flex;
+  flex-direction: column;           
+  align-items: center;              
+  gap: 5px;                         
+}
+
+.logo-img {
+  height: 70px;                     
+  width: auto;                      
+}
+
+.narajo {
+  height: 70px;                     
+  width: auto;                      
+}
+
+.narajo-text {
+  font-size: 0.75rem;               
+  color: #555;                      
+}
+
+/* --- メインコンテンツ関連のCSS --- */
+.image-place {
+  float: right;          
+  margin-left: 20px;     
+  margin-bottom: 15px;   
+  width: 320px;          
+  display: flex;         
+  gap: 10px;             
+}
+
+.image-place img {
+  width: 50%;            
+  height: auto;          
+  border-radius: 4px;    
+  object-fit: cover;     
+}
+
+.image-place::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* --- フォント・見出しのデザイン --- */
+/* 💡タイトル（h1）だけをこだわり明朝体に固定 */
+h1 {
+  font-family: "TsukuOldMinPro-R", "MS Mincho", "Noto Serif JP", serif;
+  font-size: 2.8rem;          
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #222; /* 真っ黒より少し優しい墨色 */
+}
+
+/* 💡文章（h3, h4）はすべてスッキリ見やすい「ゴシック体」に統一！ */
+h3, h4 {
+  font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Meiryo", sans-serif;
+  color: #333;
+}
+
+h4 {
+  font-weight: normal;
+  line-height: 1.85; /* 行間をさらに少し広げて読みやすさをMAXに */
+  letter-spacing: 0.03em; /* 文字の間隔もわずかに広げてスッキリ */
+}
+
+/* 画面全体のレイアウト */
+body {
+  max-width: 800px;  
+  margin: 0 auto;       
+  padding: 0 20px;   
+  background-color: #f9f3b080;
+}
+
+
+
+/* 💡追加：言語切り替えボタンのデザイン */
+.lang-switcher {
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+.lang-btn {
+  cursor: pointer;
+  color: #888;
+  padding: 0 3px;
+}
+
+/* 現在選択されている言語を少し太字にして強調する */
+.lang-btn.active {
+  font-weight: bold;
+  color: #222;
+}
+</style>
+
+</body>
+<script>
+// 1. 各ボタンと、切り替えたい文章のグループ（h1, h3, h4など）を取得する
+const btnJp = document.querySelectorAll('.lang-btn')[0];
+const btnEn = document.querySelectorAll('.lang-btn')[1];
+
+// 2. 英語用のテキストデータを準備する
+const engData = {
+    title: "Shogi Club",
+    sub: "President: Taiki Kimura / Vice President: Tai Sugano / Treasurer: Kengo Okutani",
+    desc: "We are the Shogi Club, with 24 members practicing every Thursday and the 2nd/4th Wednesday. Usually, we play quietly in a traditional Japanese room, but this year's school festival is different! We are moving our location to Seminar Room 2 in the General Education Building. For those who thought the shogi club was a bit unapproachable, this open classroom welcome everyone! From complete beginners to advanced players, we have experiential events that everyone can enjoy. We look forward to seeing you!",
+    info: "Location: General Education Building, Seminar Room 2<br>Dates: 9/19 (Sat) & 9/20 (Sun)"
+};
+
+// 3. 元の日本語データを保存しておく
+const jpData = {
+    title: document.querySelector('h1').innerHTML,
+    sub: document.querySelector('h3').innerHTML,
+    desc: document.querySelectorAll('h4')[0].innerHTML,
+    info: document.querySelectorAll('h4')[1].innerHTML
+};
+
+// 4. 英語ボタンがクリックされた時の処理
+btnEn.addEventListener('click', () => {
+    document.querySelector('h1').innerHTML = engData.title;
+    document.querySelector('h3').innerHTML = engData.sub;
+    document.querySelectorAll('h4')[0].innerHTML = engData.desc;
+    document.querySelectorAll('h4')[1].innerHTML = engData.info;
+    
+    btnEn.classList.add('active');
+    btnJp.classList.remove('active');
+});
+
+// 5. 日本語ボタンがクリックされた時の処理
+btnJp.addEventListener('click', () => {
+    document.querySelector('h1').innerHTML = jpData.title;
+    document.querySelector('h3').innerHTML = jpData.sub;
+    document.querySelectorAll('h4')[0].innerHTML = jpData.desc;
+    document.querySelectorAll('h4')[1].innerHTML = jpData.info;
+    
+    btnJp.classList.add('active');
+    btnEn.classList.remove('active');
+});
+</script>
+</html>
