@@ -232,7 +232,14 @@ h4 {
     border-top:1px solid #ddd;
     margin:15px 0;
 }
-
+/* 「ただいま準備中」画像（またはエリア内の画像全体）に対する設定 */
+.leaderboard img, 
+img[alt="リーダーボード"] {
+  width: 100%;       /* 親要素の幅いっぱいに広げる */
+  max-width: 100%;   /* 画面からはみ出さないように抑える */
+  height: auto;      /* 縦横比（アスペクト比）を維持する */
+  display: block;    /* 余白の崩れを防ぐ */
+}
 </style>
 
 
