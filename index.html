@@ -84,7 +84,17 @@
     </div>
 
 <h2 class="king-title">リーダーボード</h2>
-<img src="leaderboard.png" alt="リーダーボード" class="leaderboard-img">
+<div class="ranking-header">
+    <span>順位</span>
+    <span>名前</span>
+    <span>ランク</span>
+</div>
+
+
+
+<div id="leaderboard">
+    読み込み中...
+</div>
     <div id="info" class="info-box">
     <strong> 活動場所</strong><br>
     総合教育棟 ゼミ2教室
@@ -242,6 +252,31 @@ img[alt="リーダーボード"] {
   height: auto;      /* 縦横比（アスペクト比）を維持する */
   display: block;    /* 余白の崩れを防ぐ */
 }
+
+
+#leaderboard{
+    max-width:700px;
+    margin:auto;
+}
+
+.player{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    margin:6px 0;
+    border-bottom:1px solid #ddd;
+}
+
+
+.ranking-header{
+    display:flex;
+    justify-content:space-between;
+    padding:12px;
+    margin:6px 0;
+    font-weight:bold;
+    border-bottom:2px solid #dcd1be;
+}
+
 </style>
 
 
@@ -343,5 +378,34 @@ btnJp.addEventListener("click", () => {
     btnEn.classList.remove("active");
 });
 </script>
+<script>
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzgsCQid04zVBlKE5X15Y09LOXLpahA1qfKelJamIsRVo4srz8mUCPlICmncPMcDA7RZg/exec";
+
+fetch(GAS_URL)
+  .then(res => res.json())
+  .then(data => {
+
+    let html = "";
+
+    data.forEach(player => {
+      html += `
+      <div class="player">
+          <span>#${player.rankNo}</span>
+          <span>${player.nickname}</span>
+          <span>${player.displayRank}</span>
+      </div>
+      `;
+    });
+
+    document.getElementById("leaderboard").innerHTML = html;
+
+  })
+  .catch(err => {
+    document.getElementById("leaderboard").innerHTML = "ランキングを取得できませんでした";
+    console.error(err);
+  });
+</script>
+
+
 </body>
 </html>
