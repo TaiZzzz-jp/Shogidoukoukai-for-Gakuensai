@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet">
-</head>
+<link rel="icon" href="icon.png">
+  </head>
 <body>
 
 <!-- ==========================================
@@ -17,7 +18,7 @@
 
 <header class="main-header">
     <img src="shogi.jpg" alt="将棋同好会ロゴ" class="logo-img">
-
+    
     <div class="narajo-container"> 
         <a href="https://nwuss.nara-wu.ac.jp/"> 
             <img src="images.jpeg" alt="narajo" class="narajo">
@@ -57,7 +58,7 @@
         <h2 class="king-title">Kingランクマッチ</h2>
         <p>Kingランクマッチとは<br>
         ランクシステム：プレイヤーの強さは将棋のコマで表されます。初期ランクからスタートし、勝利数を重ねて成り上がろう！</p>
-
+        
         <table class="rank-table">
             <tr><th>ランク</th><th>強さ</th></tr>
             <tr><td>歩兵</td><td>★☆☆☆</td></tr>
@@ -84,7 +85,19 @@
     </div>
 
 <h2 class="king-title">リーダーボード</h2>
-<img src="leaderboard.png" alt="リーダーボード" class="leaderboard-img">
+<div class="ranking-header">
+    <span>順位</span>
+    <span>名前</span>
+    <span>ランク</span>
+    <span>達成日時</span>
+</div>
+
+
+
+<div id="leaderboard">
+    読み込み中...
+</div>
+<p id="lastUpdate"></p>
     <div id="info" class="info-box">
     <strong> 活動場所</strong><br>
     総合教育棟 ゼミ2教室
@@ -95,65 +108,69 @@
     9/19(土)・9/20(日)
 </div>
 </div>
-
 <p>言語切り替えに一部誤りがあるところや、表示が正しくない箇所があります。<br>
 There are some translation errors.
 </p>
+</p>このページのリーダーボードは通信環境によって見れない可能性があります<br>
+Connection may affect loading.</p>
 
 <!-- ==========================================
      2. CSS (デザイン・スタイル設定)
    ========================================== -->
+
+
 <style>
 /* 画面全体のレイアウト */
 body {
-  max-width: 800px;  
-  margin: 0 auto;       
-  padding: 0 20px;   
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
   background-color: #f9f3b080;
 }
 
 /* ヘッダー関連 */
 .main-header {
-  padding: 8px 0;                  
-  border-bottom: 2px solid #dcd1be; 
-  margin-bottom: 25px;              
+  padding: 8px 0;
+  border-bottom: 2px solid #dcd1be;
+  margin-bottom: 25px;
   display: flex;
-  justify-content: space-between;   
-  align-items: center;              
+  justify-content: space-between;
+  align-items: center;
 }
 
 .narajo-container {
   display: flex;
-  flex-direction: column;           
-  align-items: center;              
-  gap: 5px;                         
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
 }
 
-.logo-img, .narajo {
-  height: 70px;                     
-  width: auto;                      
+.logo-img,
+.narajo {
+  height: 70px;
+  width: auto;
 }
 
 .narajo-text {
-  font-size: 0.75rem;               
-  color: #555;                      
+  font-size: 0.75rem;
+  color: #555;
 }
 
 /* 画像エリア */
 .image-place {
-  float: right;          
-  margin-left: 20px;     
-  margin-bottom: 15px;   
-  width: 320px;          
-  display: flex;         
-  gap: 10px;             
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  width: 320px;
+  display: flex;
+  gap: 10px;
 }
 
 .image-place img {
-  width: 50%;            
-  height: auto;          
-  border-radius: 4px;    
-  object-fit: cover;     
+  width: 50%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
 }
 
 .image-place::after {
@@ -162,17 +179,20 @@ body {
   display: block;
 }
 
-/* タイトル・フォントデザイン */
+/* タイトル・フォント */
 h1 {
   font-family: "TsukuOldMinPro-R", "MS Mincho", "Noto Serif JP", serif;
-  font-size: 2.8rem;          
+  font-size: 2.8rem;
   margin-top: 10px;
   margin-bottom: 15px;
   color: #222;
 }
 
-h3, h4, p {
-  font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Meiryo", sans-serif;
+h3,
+h4,
+p {
+  font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN",
+    "ヒラギノ角ゴ ProN W3", "Meiryo", sans-serif;
   color: #333;
 }
 
@@ -182,7 +202,7 @@ h4 {
   letter-spacing: 0.03em;
 }
 
-/* 言語切り替えボタン */
+/* 言語切替 */
 .lang-switcher {
   font-family: sans-serif;
   font-size: 0.85rem;
@@ -200,7 +220,7 @@ h4 {
   color: #222;
 }
 
-/* ランク表デザイン */
+/* ランク表 */
 .rank-table {
   border-collapse: collapse;
   margin: 20px 0;
@@ -218,30 +238,87 @@ h4 {
   border-left: 8px solid #d4af37;
   padding-left: 10px;
 }
-/* 場所と時間 */
+
+/* 活動情報 */
 .info-box {
-    background: #fffdf6;
-    border-left: 6px solid #d4af37;
-    border-radius: 8px;
-    padding: 18px 20px;
-    margin-top: 30px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    line-height: 1.8;
-    font-size: 1.05rem;
+  background: #fffdf6;
+  border-left: 6px solid #d4af37;
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
-.info-box hr{
-    border:none;
-    border-top:1px solid #ddd;
-    margin:15px 0;
+.info-box hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 15px 0;
 }
-/* 「ただいま準備中」画像（またはエリア内の画像全体）に対する設定 */
-.leaderboard img, 
+
+/* リーダーボード画像 */
+.leaderboard img,
 img[alt="リーダーボード"] {
-  width: 100%;       /* 親要素の幅いっぱいに広げる */
-  max-width: 100%;   /* 画面からはみ出さないように抑える */
-  height: auto;      /* 縦横比（アスペクト比）を維持する */
-  display: block;    /* 余白の崩れを防ぐ */
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ランキング */
+#leaderboard {
+  width:100%;
+  margin: 0 auto 30px;
+}
+
+.ranking-header,
+.player {
+  display: grid;
+  grid-template-columns: 80px 2fr 120px 170px;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+}
+
+.ranking-header {
+  font-weight: bold;
+  background: #f3e7b5;
+  border: 2px solid #d4af37;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+}
+
+.player {
+  background: #fff;
+  border-left: 2px solid #d4af37;
+  border-right: 2px solid #d4af37;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.player:last-child {
+  border-bottom: 2px solid #d4af37;
+  border-radius: 0 0 10px 10px;
+}
+
+.player:nth-child(even) {
+  background: #faf8f0;
+}
+
+.player span:first-child {
+  font-weight: bold;
+}
+
+.player span:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player span:last-child {
+  text-align: right;
+  font-weight: bold;
+  color: #8b0000;
 }
 </style>
 
@@ -344,5 +421,42 @@ btnJp.addEventListener("click", () => {
     btnEn.classList.remove("active");
 });
 </script>
+<script>
+const GAS_URL = "https://script.google.com/macros/s/AKfycbynZ5ARUoEXCN7F6r88Auzc6mV-ustulcbvCkQNIEX5tsYWL9CyLLCYTNGM5p-6Kvbv1w/exec";
+
+fetch(GAS_URL)
+  .then(res => res.json())
+  .then(data => {
+
+    let html = "";
+
+    data.ranking.forEach(player => {
+
+      const crown = player.rankNo === 1 ? "♛ " : "";
+
+      html += `
+      <div class="player">
+          <span>${crown}#${player.rankNo}</span>
+          <span>${player.nickname}</span>
+          <span>${player.displayRank}</span>
+          <span>${player.achievedAt}</span>
+      </div>
+      `;
+    });
+
+    document.getElementById("leaderboard").innerHTML = html;
+
+    document.getElementById("lastUpdate").innerHTML =
+      "最終更新：" + data.updated;
+
+  })
+  .catch(err => {
+    document.getElementById("leaderboard").innerHTML =
+      "ランキングを取得できませんでした";
+    console.error(err);
+  });
+</script>
+
+
 </body>
 </html>
